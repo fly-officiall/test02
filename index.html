@@ -18,17 +18,27 @@
             touch-action: manipulation; 
         }
 
-        /* Responsive White Card */
+        /* Responsive White Card with Fixed Size Setup */
         .card {
             background-color: #ffffff;
             width: 90%; 
             max-width: 400px; 
+            min-height: 520px; /* Keeps the card size completely stable */
             padding: 30px 20px 20px 20px; 
             border-radius: 25px;
             box-shadow: 0 10px 25px rgba(255, 105, 180, 0.2);
             text-align: center;
             position: relative;
             z-index: 1;
+            /* Flexbox keeps the content perfectly centered vertically and horizontally */
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        #question-container, #celebration {
+            width: 100%;
         }
 
         /* The SVG Emoji Art */
@@ -129,18 +139,18 @@
             to { transform: rotate(30deg) translateY(0); }
         }
 
-        /* Celebration Screen (Updated from your code) */
+        /* Celebration Screen */
         #celebration {
             display: none;
             text-align: center;
         }
 
         #celebration img {
-            width: 250px; /* Made slightly wider for the fireworks */
+            width: 250px; 
             max-width: 100%;
             border-radius: 15px;
             margin-top: 15px;
-            animation: pop 0.35s ease; /* Added a nice pop animation */
+            animation: pop 0.35s ease; 
         }
 
         #celebration h2 {
