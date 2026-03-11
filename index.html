@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Are you willing to FLY?</title>
+    <style>
+        /* Cute Baby Pink Background */
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #FFD1DC; 
+            font-family: 'Quicksand', 'Comic Sans MS', 'Segoe UI', sans-serif;
+            overflow: hidden;
+            touch-action: manipulation; 
+        }
+
+        /* Responsive White Card */
+        .card {
+            background-color: #ffffff;
+            width: 90%; 
+            max-width: 400px; 
+            padding: 30px 20px 20px 20px; 
+            border-radius: 25px;
+            box-shadow: 0 10px 25px rgba(255, 105, 180, 0.2);
+            text-align: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* The SVG Emoji Art */
+        .art {
+            width: 180px; 
+            margin: 0 auto 10px;
+            display: block;
+            filter: drop-shadow(0 10px 14px rgba(255, 105, 180, 0.2)); 
+        }
+
+        /* Typography */
+        h1 {
+            color: #ff6699; 
+            font-size: 2.2rem;
+            margin: 0 0 10px 0;
+        }
+
+        /* Subtitle */
+        .subtitle {
+            font-size: 0.95rem;
+            color: #d1477a; 
+            font-style: italic;
+            margin-top: 15px;
+            margin-bottom: 0;
+        }
+
+        /* Interactive Area for Buttons */
+        .interaction-area {
+            position: relative;
+            width: 100%;
+            height: 220px; 
+            border-radius: 15px;
+        }
+
+        button {
+            font-size: 1.2rem;
+            padding: 12px 35px;
+            cursor: pointer;
+            border: none;
+            border-radius: 50px;
+            font-weight: bold;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            position: absolute; 
+            transition: background-color 0.3s ease, transform 0.3s ease; 
+        }
+
+        /* YES Button Details */
+        #yes-btn {
+            background-color: #98fb98; 
+            color: #2e8b57;
+            left: 10%;
+            bottom: 10px; 
+            transform: scale(1); 
+            transform-origin: bottom left; 
+            z-index: 10; 
+        }
+
+        #yes-btn:hover {
+            background-color: #ff69b4; 
+            color: white;
+            box-shadow: 0 15px 30px rgba(255, 105, 180, 0.4);
+        }
+
+        /* NO Button Details */
+        #no-btn {
+            background-color: #ff9999; 
+            color: #cc0000;
+            left: 55%; 
+            top: 160px; 
+            z-index: 4;
+            transition: top 0.2s ease-out, left 0.2s ease-out; 
+            overflow: visible; 
+        }
+
+        /* Drawing the little legs */
+        #no-btn::before, #no-btn::after {
+            content: '';
+            position: absolute;
+            bottom: -12px; 
+            width: 6px;
+            height: 14px;
+            background-color: #ff9999; 
+            border: 2px solid #cc0000;
+            border-top: none;
+            border-radius: 0 0 5px 5px;
+            transform-origin: top; 
+        }
+
+        #no-btn::before { left: 25px; }
+        #no-btn::after { right: 25px; }
+
+        /* Scrambling Animation for the legs */
+        #no-btn.running::before { animation: scramble 0.1s infinite alternate; }
+        #no-btn.running::after { animation: scramble 0.1s infinite alternate-reverse; }
+
+        @keyframes scramble {
+            from { transform: rotate(-30deg) translateY(-2px); }
+            to { transform: rotate(30deg) translateY(0); }
+        }
+
+        /* Celebration Screen (Updated from your code) */
+        #celebration {
+            display: none;
+            text-align: center;
+        }
+
+        #celebration img {
+            width: 250px; /* Made slightly wider for the fireworks */
+            max-width: 100%;
+            border-radius: 15px;
+            margin-top: 15px;
+            animation: pop 0.35s ease; /* Added a nice pop animation */
+        }
+
+        #celebration h2 {
+            color: #ff6699;
+            font-size: 2.5rem;
+            margin: 0;
+            animation: pop 0.35s ease;
+        }
+
+        @keyframes pop {
+            from { transform: scale(.96); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="card" id="main-card">
+        <div id="question-container">
+            
+            <svg class="art" viewBox="0 0 320 240" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                    <linearGradient id="fur" x1="0" x2="1">
+                        <stop offset="0" stop-color="#f7c7a1"/>
+                        <stop offset="1" stop-color="#f2a97b"/>
+                    </linearGradient>
+                    <linearGradient id="heart" x1="0" x2="1">
+                        <stop offset="0" stop-color="#ff4d7d"/>
+                        <stop offset="1" stop-color="#ff1f68"/>
+                    </linearGradient>
+                </defs>
+                <path d="M250 50 C250 33 270 25 282 38 C294 25 314 33 314 50 C314 78 282 92 282 106 C282 92 250 78 250 50Z" fill="url(#heart)"/>
+                <path d="M90 120 C90 70 140 40 190 60 C240 40 290 70 290 120 C290 180 240 210 190 210 C140 210 90 180 90 120Z" fill="url(#fur)"/>
+                <path d="M110 92 L95 55 L140 78 Z" fill="#f2a97b"/>
+                <path d="M270 92 L285 55 L240 78 Z" fill="#f2a97b"/>
+                <circle cx="160" cy="130" r="8"/>
+                <circle cx="220" cy="130" r="8"/>
+                <path d="M190 144 C186 144 182 148 182 152 C182 160 190 164 190 170 C190 164 198 160 198 152 C198 148 194 144 190 144Z" fill="#ff7aa2"/>
+            </svg>
+
+            <h1>Are you willing to FLY? ✈️</h1>
+            
+            <div class="interaction-area" id="interaction-area">
+                <button id="yes-btn">YES</button>
+                <button id="no-btn">NO</button>
+            </div>
+            
+            <p class="subtitle">"No" seems a bit shy 😈</p>
+        </div>
+
+        <div id="celebration">
+            <h2>YAY! 🎉</h2>
+            <img src="https://media.giphy.com/media/26ufdipQqU2lhNA4g/giphy.gif" alt="Fireworks">
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
+    <script>
+        const noBtn = document.getElementById('no-btn');
+        const yesBtn = document.getElementById('yes-btn');
+        const questionContainer = document.getElementById('question-container');
+        const celebration = document.getElementById('celebration');
+        const interactionArea = document.getElementById('interaction-area');
+        
+        let runTimeout;
+        let yesScale = 1.0; 
+
+        const moveNoButton = (e) => {
+            if(e.type === 'touchstart') {
+                e.preventDefault(); 
+            }
+
+            if (yesScale < 2.0) {
+                yesScale += 0.2; 
+                if (yesScale > 2.0) yesScale = 2.0; 
+                yesBtn.style.transform = `scale(${yesScale})`;
+            }
+
+            noBtn.classList.add('running');
+            clearTimeout(runTimeout);
+
+            const areaWidth = interactionArea.clientWidth;
+            const btnWidth = noBtn.offsetWidth;
+            const btnHeight = noBtn.offsetHeight;
+            
+            const maxAllowedY = yesBtn.offsetTop - btnHeight - 10;
+            
+            const randomX = Math.floor(Math.random() * (areaWidth - btnWidth));
+            const randomY = Math.floor(Math.random() * maxAllowedY); 
+            
+            noBtn.style.left = `${randomX}px`;
+            noBtn.style.top = `${randomY}px`;
+
+            runTimeout = setTimeout(() => {
+                noBtn.classList.remove('running');
+            }, 300);
+        };
+
+        noBtn.addEventListener('mouseover', moveNoButton);
+        noBtn.addEventListener('touchstart', moveNoButton);
+
+        yesBtn.addEventListener('click', () => {
+            questionContainer.style.display = 'none';
+            celebration.style.display = 'block';
+            
+            let duration = 5 * 1000;
+            let animationEnd = Date.now() + duration;
+
+            (function frame() {
+                confetti({
+                    particleCount: 7,
+                    angle: 60,
+                    spread: 55,
+                    origin: { x: 0 },
+                    colors: ['#ffb6c1', '#ff69b4', '#ffffff', '#ff99cc'] 
+                });
+                confetti({
+                    particleCount: 7,
+                    angle: 120,
+                    spread: 55,
+                    origin: { x: 1 },
+                    colors: ['#ffb6c1', '#ff69b4', '#ffffff', '#ff99cc']
+                });
+
+                if (Date.now() < animationEnd) {
+                    requestAnimationFrame(frame);
+                }
+            }());
+        });
+    </script>
+</body>
+</html>
